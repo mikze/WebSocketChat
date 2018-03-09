@@ -1,9 +1,10 @@
 import * as types from '../consts/ActionConsts'
 
-const Msgs = (state = [], action) =>
+export const Msgs = (state = [], action) =>
 {
     switch(action.type)
     {
+        case types.MSG_REC:
         case types.ADD_MSG:
         return [
             ...state,
