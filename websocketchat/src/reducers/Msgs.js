@@ -10,7 +10,7 @@ export const Msgs = (state = [], action) =>
             ...state,
             {
               author: action.author,
-              text: action.text
+              text: action.msg
             }
           ]
         case types.MSG_REC:
