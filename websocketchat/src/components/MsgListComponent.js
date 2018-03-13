@@ -1,11 +1,11 @@
 import React from 'react'
-import Message from './Msg'
+import {Msg as Message} from './Msg'
 
-export default MsgList = ({Msgs}) => 
+export const MsgListComponent = ({Msgs}) => 
 (
     <div>
         {Msgs.map(msg => (
-			<Msg
+			<Message
 				{...msg}
 			/>
 		))}

@@ -1,8 +1,8 @@
 import React from 'react'
 
-export default Msg = ({author, MsgText}) => 
+export const Msg = ({author, text}) => 
 (
     <div>
-        {author} {MsgText}
+        {author} {text}
     </div>
 )
