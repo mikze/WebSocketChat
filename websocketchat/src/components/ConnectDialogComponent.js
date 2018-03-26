@@ -3,7 +3,6 @@ import Dialog from 'material-ui/Dialog';
 import FlatButton from 'material-ui/FlatButton';
 import TextField from 'material-ui/TextField'
 import RaisedButton from 'material-ui/RaisedButton';
-import setupSocket from '../../src/clientSocket'
 
 export default class ConectDialogComponent extends React.Component {
   state = {
@@ -48,7 +47,7 @@ export default class ConectDialogComponent extends React.Component {
         >
           <TextField 
           defaultValue={'anon'}
-          onChange = {e => { this.state.name = e.target.value }} hintText="Nickname"/>
+          onChange = {e => { this.setState({name: e.target.value})} } hintText="Nickname"/>
         </Dialog>
       </div>
     );

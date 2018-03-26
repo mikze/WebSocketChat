@@ -2,16 +2,23 @@ import React from 'react'
 import TextField from 'material-ui/TextField'
 import FlatButton from 'material-ui/FlatButton'
 
-export const AddMsgComponent = ({thisUserName, dispatch}) => 
+export class AddMsgComponent extends React.Component 
 {
-    this.state = {
-        input: '',
-    }
+    constructor(props) {
+        super(props);
+
+        this.state = {
+            input: ''
+        }
+}
     
+    render(){
+    const {thisUserName, dispatch} = this.props;
+
     return(
     <div>
         
-        <TextField onChange = {e => {this.state.input = e.target.value}} hintText="Message"/>
+        <TextField onChange = { e => this.setState({input: e.target.value}) } hintText="Message"/>
         
         <FlatButton 
             onClick ={() => dispatch(this.state.input, thisUserName)} 
@@ -19,4 +26,6 @@ export const AddMsgComponent = ({thisUserName, dispatch}) =>
             primary = {true}
             />
     </div>
-)}
+        );
+}
+}

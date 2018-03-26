@@ -5,13 +5,16 @@ export const Msgs = (state = [], action) =>
     switch(action.type)
     {
         case types.MSG_REC:
-        return [
-            ...state,
-            {
-              author: action.author,
-              text: action.msg
-            }
-          ]
+        
+        return Object.assign([],
+            [
+                    ...state,
+                {
+                    author: action.author,
+                    text: action.msg
+                }
+            ]);
+
         default:
         return state;
     }

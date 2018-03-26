@@ -30,6 +30,8 @@ const setName = (user, name) =>      // setName search for name, if name is in u
 /////////////////////////////// SOCKET //////////////////////////////////////////////
 WS.on('connection', (ws, req) => {
     
+    console.log(`Connected  ${req.connection.remoteAddress}`);
+
     ws.on('message', msg =>
 {   
     const RECIEVED = JSON.parse(msg);
@@ -51,17 +53,13 @@ WS.on('connection', (ws, req) => {
             broadcast(WS,{type: "ADD_USER", name: ws.name});
             ws.send(JSON.stringify({type: "SET_NEW_NAME", myUserName: ws.name}));
 
-        break;
-        /////////////////////////////////////////////////////////////////////////////
-        case 'SEND_MSG':
-
-            broadcast(WS, {type:"MSG_REC", author:ws.name, msg:RECIEVED.msg});
-
+            console.log(`Change name from ${oldName} to ${ws.name}`);
         break;
         /////////////////////////////////////////////////////////////////////////////
         case "ADD_MSG":
 
             broadcast(WS,{type: "MSG_REC", msg:RECIEVED.msg , author:ws.name});
+            console.log(`${ws.name} wrote ${RECIEVED.msg}`);
 
         break;
         /////////////////////////////////////////////////////////////////////////////
@@ -81,7 +79,8 @@ WS.on('connection', (ws, req) => {
 
 ws.on('close', ()=>
 {
-    console.log('do widzenia ', ws.name);
+    console.log(`Disconnected  ${ws.name} ${req.connection.remoteAddress}`);
+
     broadcast(WS,{type: "RM_USER", name: ws.name});
     _.remove(clientList, {userName: ws.name}); // remove clients name from the list
 })
