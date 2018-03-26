@@ -8,11 +8,11 @@ import setupSocket from '../../src/clientSocket'
 export default class ConectDialogComponent extends React.Component {
   state = {
     open: true,
-    name: ''
+    name: 'anon'
   };
 
   handleOpen = () => {
-    this.setState({name: ''});
+    this.setState({name: 'anon'});
     this.setState({open: true});
   };
 
@@ -40,13 +40,15 @@ export default class ConectDialogComponent extends React.Component {
       <div>
         <RaisedButton label="Change Name" onClick={this.handleOpen} />
         <Dialog
-          title="Change your nickname"
+          title="Set your nickname"
           actions={actions}
           modal={false}
           open={this.state.open}
           onRequestClose={this.handleClose}
         >
-          <TextField onChange = {e => { this.state.name = e.target.value }} hintText="Nickname"/>
+          <TextField 
+          defaultValue={'anon'}
+          onChange = {e => { this.state.name = e.target.value }} hintText="Nickname"/>
         </Dialog>
       </div>
     );

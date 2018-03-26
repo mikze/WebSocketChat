@@ -9,3 +9,4 @@ export const CHANGE_NAME = "CHANGE_NAME"
 export const GET_TOKEN = "GET_TOKEN"
 export const GET_MYNAME = "GET_MYNAME"
 export const RM_USER = "RM_USER" // remove user from list
+export const SET_NEW_NAME = "SET_NEW_NAME" // remove user from list

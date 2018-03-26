@@ -43,3 +43,9 @@ export const setUsersList = usersList =>
 	type : types.USERS_LIST,
 	usersList
 })
+
+export const setNewName = myUserName =>
+({
+	type : types.SET_NEW_NAME,
+	myUserName
+})
