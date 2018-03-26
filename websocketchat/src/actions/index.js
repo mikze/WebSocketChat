@@ -9,9 +9,9 @@ export const addMsg = (msg, author) => ({
 	author
 })
 
-export const changeName = (name) => ({
-	type: types.CHANGE_NAME,
-	name
+export const changeName = myUserName => ({
+	type: types.CHANGE_NAME_REQUEST,
+	myUserName
 })
 
 export const messageReceived = (msg, author) => ({
@@ -19,11 +19,6 @@ export const messageReceived = (msg, author) => ({
 	id: nextMessageId++,
 	msg,
 	author
-})
-
-export const getToken = (token) => ({
-	type : types.GET_TOKEN,
-	token
 })
 
 export const addUserToList = name => 

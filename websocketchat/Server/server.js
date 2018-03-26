@@ -7,6 +7,8 @@ const WS = new WebSocket.Server({port:8080});
 
 const clientList = [];
 
+
+///////////////////////////////// HELP METHODS ////////////////////////////////////////////
 const broadcast = (ws, data) =>
 {
 	ws.clients.forEach((client) => {
@@ -25,44 +27,52 @@ const setName = (user, name) =>      // setName search for name, if name is in u
     clientList.map(x => x.userName).indexOf(findName) === -1 ? (user.name = findName, counter = 0) : setName(user, name);
 }
 
-
+/////////////////////////////// SOCKET //////////////////////////////////////////////
 WS.on('connection', (ws, req) => {
-    console.log('!WITAM!')
     
-
     ws.on('message', msg =>
 {   
     const RECIEVED = JSON.parse(msg);
 
     switch(RECIEVED.type)
     {
-        case 'CHANGE_NAME':
+        /////////////////////////////////////////////////////////////////////////////
+        case 'CHANGE_NAME_REQUEST':
+
             ws.send(JSON.stringify({type: "USERS_LIST", clientList}));
             let oldName;
             ws.name ? oldName = ws.name : undefined;
             _.remove(clientList, {userName: oldName}); // remove clients name from the list
 
-            setName(ws, RECIEVED.name);
+            setName(ws, RECIEVED.myUserName);
             clientList.push({userName: ws.name});
 
             broadcast(WS,{type: "RM_USER", name: oldName});
             broadcast(WS,{type: "ADD_USER", name: ws.name});
             ws.send(JSON.stringify({type: "SET_NEW_NAME", myUserName: ws.name}));
-            
+
         break;
+        /////////////////////////////////////////////////////////////////////////////
         case 'SEND_MSG':
+
             broadcast(WS, {type:"MSG_REC", author:ws.name, msg:RECIEVED.msg});
-        break;
 
+        break;
+        /////////////////////////////////////////////////////////////////////////////
         case "ADD_MSG":
-            broadcast(WS,{type: "MSG_REC", msg:RECIEVED.msg , author:ws.name});
-        break;
 
+            broadcast(WS,{type: "MSG_REC", msg:RECIEVED.msg , author:ws.name});
+
+        break;
+        /////////////////////////////////////////////////////////////////////////////
         case 'USERS_LIST':
+
         clientList.map( x=> {
             console.log(x);
         }) 
+
         break;
+        /////////////////////////////////////////////////////////////////////////////
         default:
         break;
 

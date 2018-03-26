@@ -13,9 +13,8 @@ const setupSocket = (dispatch) => {
 		switch (data.type) {
 
 			case types.ADD_USER:
-			    console.log("TUTAJ",data.name)
 				dispatch(addUserToList(data.name))
-				break
+			break
 
 			case types.RM_USER:
 				dispatch(removeUserFromList(data.name))

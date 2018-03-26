@@ -7,7 +7,7 @@ export const Name = (state = [{myUserName: 'anon'}], action) =>
         case types.SET_NEW_NAME:
             return Object.assign({}, [{myUserName: action.myUserName}]);
         break
-        case types.CHANGE_NAME:
+
         default:
         return state;
     }

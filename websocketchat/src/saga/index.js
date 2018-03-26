@@ -5,7 +5,7 @@ const MsgMiddlewareHandler = function* handleNewMessage(params) {
 	yield takeEvery(types.ADD_MSG, (action) => {
 		params.socket.send(JSON.stringify(action))
 	})
-	yield takeEvery(types.CHANGE_NAME, (action) => {
+	yield takeEvery(types.CHANGE_NAME_REQUEST, (action) => {
 		params.socket.send(JSON.stringify(action))
 	})
 }
