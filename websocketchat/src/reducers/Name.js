@@ -1,15 +1,13 @@
 import * as types from '../consts/ActionConsts'
 
-export const Msgs = (state = [], action) =>
+export const Name = (state = [{myUserName: 'anon'}], action) =>
 {
     switch(action.type)
     {
-        case types.MSG_REC:
+        case types.CHANGE_NAME:
         return [
-            ...state,
             {
-              author: action.author,
-              text: action.msg
+              myUserName: action.name,
             }
           ]
         default:

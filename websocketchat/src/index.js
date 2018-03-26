@@ -5,11 +5,24 @@ import registerServiceWorker from './registerServiceWorker';
 
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import { Provider } from 'react-redux'
-import { createStore } from 'redux'
+import { createStore,applyMiddleware } from 'redux'
 import reducer from './reducers'
+import setupSocket from "../src/clientSocket/"
+import createSagaMiddleware from 'redux-saga'
+import MsgMiddlewareHandler from './saga'
 
-const store = createStore(reducer)
+const sagaMiddleware = createSagaMiddleware()
+
+const store = createStore(
+	reducer,
+	applyMiddleware(sagaMiddleware)
+)
+
 window.store = store;
+
+const socket = setupSocket(store.dispatch);
+
+sagaMiddleware.run(MsgMiddlewareHandler, {socket})
 
 ReactDOM.render(
 

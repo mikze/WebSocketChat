@@ -1,0 +1,40 @@
+div.MsgList {
+    position: inherit;
+    padding: 16px;
+    margin-top: 30px;
+    height: 500px; /* Used in this example to enable scrolling */
+    width: 800px;
+    float:left; 
+    display:inline;
+    overflow: hidden;
+    overflow-y: scroll;
+    background-color: grey;
+}
+
+div.UsersList {
+    position: relative;
+    padding: 16px;
+    margin-top: 30px;
+    width: 200px;
+    height: 550px; /* Used in this example to enable scrolling */
+    float:left; 
+    overflow-y: scroll;
+    overflow: hidden;
+    display:inline;
+}
+
+div.Container {
+   position: absolute;
+   height: 650px;
+   width: 950px;
+   top: 50%;
+  left: 50%;
+  margin-top: -325px;
+  margin-left: -475px;
+}
+
+div.AddMsg{
+    display:inline;
+    position: inherit;
+    bottom: 0;
+}

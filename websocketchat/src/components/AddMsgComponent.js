@@ -2,22 +2,21 @@ import React from 'react'
 import TextField from 'material-ui/TextField'
 import FlatButton from 'material-ui/FlatButton'
 
-export const AddMsgComponent = props => 
+export const AddMsgComponent = ({thisUserName, dispatch}) => 
 {
     this.state = {
         input: '',
-        name: 'Anonymous'
     }
     
     return(
     <div>
+        
         <TextField onChange = {e => {this.state.input = e.target.value}} hintText="Message"/>
-        <TextField onChange = {e => { e.target.value ? this.state.name = e.target.value : this.state.name = 'Anonymous' }} hintText="Nickname"/>
-
-        <FlatButton onClick ={ 
-
-            () => {props.dispatch(this.state.input, this.state.name)} 
-
-            } label="Send"/>
+        
+        <FlatButton 
+            onClick ={() => dispatch(this.state.input, thisUserName)} 
+            label="Send"
+            primary = {true}
+            />
     </div>
 )}

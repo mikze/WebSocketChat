@@ -8,4 +8,4 @@ const mapDispatchToProps = dispatch => ({
   }
 })
 
-export const AddMsg = connect(() => ({}), mapDispatchToProps)(AddMsgComponent)
+export const AddMsg = connect(state => ({thisUserName: state.Name[0].myUserName}), mapDispatchToProps)(AddMsgComponent)
